@@ -29,7 +29,7 @@ find /Volumes/CAM_SD /Volumes/CAM_MEM -name '*.JPG' -print0 | while read -d $'\0
   fi
 
   echo "storing $STORE_PATH"
-  mkdir -p "$STORE_DIR" && cp -p -n "$CAMERA_PATH" "$STORE_PATH" && ~/retouch.sh "$STORE_PATH"
+  mkdir -p "$STORE_DIR" && cp -p -n "$CAMERA_PATH" "$STORE_PATH" && ./retouch.sh "$STORE_PATH"
   [[ $? == 0 ]] || echo "WARN: $STORE_PATH not saved"
 done
 

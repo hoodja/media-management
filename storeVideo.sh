@@ -28,7 +28,7 @@ find /Volumes/CAM_SD /Volumes/CAM_MEM -name '*.MTS' -print0 | while read -d $'\0
 
 	  mkdir -p $STORE_DIR && cp -p "$CAMERA_PATH" "$STORE_PATH"
 	  [[ $? == 0 ]] || echo "WARN: $STORE_PATH not saved"
-          ~/video_retouch.sh "$STORE_PATH" || echo "WARN: Could not set correct timestamp on $STORE_PATH"
+          ./video_retouch.sh "$STORE_PATH" || echo "WARN: Could not set correct timestamp on $STORE_PATH"
 	else
 	  echo "$CAMERA_FILE already saved"
 	fi

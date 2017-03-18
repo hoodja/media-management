@@ -37,7 +37,7 @@ find $* \( -iname '*.jpeg' -or -iname '*.jpg' -or -iname '*.png' -or -iname '*.g
   echo "storing $STORE_PATH"
   mkdir -p "$STORE_DIR" && cp -p -n "$CAMERA_PATH" "$STORE_PATH" && rm "$CAMERA_PATH"
   if [[ $? == 0 ]]; then
-    ~/retouch.sh "$STORE_PATH"
+    ./retouch.sh "$STORE_PATH"
   else
     echo "WARN: $STORE_PATH not saved"
   fi
