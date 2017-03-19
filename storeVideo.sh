@@ -25,6 +25,11 @@ find /Volumes/CAM_SD /Volumes/CAM_MEM -name '*.MTS' -print0 | while read -d $'\0
 	  echo $CAMERA_FILE seems new
 	  STORE_DIR="$MOUNT_POINT/$(exiftool -DateTimeOriginal -d %Y/%B "$CAMERA_PATH" | sed -e 's/ *//g' -e 's/^[^:]*://')"
 	  STORE_PATH="$STORE_DIR/$CAMERA_FILE"
+          if [[ -f "$STORE_PATH" ]]; then
+            echo "$STORE_PATH already exists on target... assuming name collision"
+            STORE_PATH="${STORE_DIR}/${RANDOM}_${CAMERA_FILE}"
+            echo "now storing to $STORE_PATH"
+          fi
 
 	  mkdir -p $STORE_DIR && cp -p "$CAMERA_PATH" "$STORE_PATH"
 	  [[ $? == 0 ]] || echo "WARN: $STORE_PATH not saved"
