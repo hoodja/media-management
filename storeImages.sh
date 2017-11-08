@@ -12,8 +12,8 @@ mkdir -p $MOUNT_POINT
 mount -t afp afp://${STORE_IP:?'no STORE_IP set'}/images $MOUNT_POINT
 [[ $? == 0 ]] || die "mount point didn't work"
 
-
-find /Volumes/CAM_SD /Volumes/CAM_MEM -name '*.JPG' -print0 | while read -d $'\0' file; do
+#TODO: Externalize the search list
+find /Volumes/CAM_SD /Volumes/CAM_MEM /Volumes/DSLR -name '*.JPG' -print0 | while read -d $'\0' file; do
   CAMERA_PATH=$file
   CAMERA_FILE="$(basename "$CAMERA_PATH")"
 
